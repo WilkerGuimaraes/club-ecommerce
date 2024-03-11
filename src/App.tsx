@@ -1,3 +1,13 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import { HomePage } from './pages/home/Home.pages';
+
 export const App = () => {
-  return <h1>Hello World!</h1>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
