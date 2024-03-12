@@ -15,6 +15,10 @@ export const Header = () => {
     navigate('/login');
   };
 
+  const handleSignupClick = () => {
+    navigate('/sign-up');
+  };
+
   return (
     <HeaderContainer>
       <HeaderTitle>CLUB CLOTHING</HeaderTitle>
@@ -22,7 +26,7 @@ export const Header = () => {
       <HeaderItems>
         <HeaderItem>Explorar</HeaderItem>
         <HeaderItem onClick={handleLoginClick}>Login</HeaderItem>
-        <HeaderItem>Criar Conta</HeaderItem>
+        <HeaderItem onClick={handleSignupClick}>Criar Conta</HeaderItem>
         <HeaderItem>
           <BsCart3 size={25} />
           <p style={{ marginLeft: 5 }}>5</p>
