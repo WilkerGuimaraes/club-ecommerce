@@ -46,7 +46,7 @@ export const LoginPage = () => {
           <LoginInputContainer>
             <p>E-mail</p>
             <CustomInput
-              hasError={!!errors?.email}
+              $hasError={!!errors?.email}
               placeholder="Digite o seu e-mail"
               {...register('email', {
                 required: true,
@@ -69,7 +69,7 @@ export const LoginPage = () => {
           <LoginInputContainer>
             <p>Senha</p>
             <CustomInput
-              hasError={!!errors?.password}
+              $hasError={!!errors?.password}
               placeholder="Digite sua senha"
               {...register('password', { required: true })}
             />
