@@ -1,6 +1,8 @@
 import { FiLogIn } from 'react-icons/fi';
 import { useForm } from 'react-hook-form';
 import isEmail from 'validator/lib/isEmail';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { addDoc, collection } from 'firebase/firestore';
 
 // Components
 import { CustomButtom } from '../../components/custom-buttom/Custom-buttom';
@@ -16,8 +18,11 @@ import {
   SignUpInputContainer,
 } from './Sign-up.styles';
 
+// Utilities
+import { auth, db } from '../../config/firebase.config';
+
 interface SignUpForm {
-  name: string;
+  firstName: string;
   lastName: string;
   email: string;
   password: string;
@@ -34,8 +39,23 @@ export const SignUpPage = () => {
 
   const watchPassword = watch('password');
 
-  const handleSubmitPress = (data: SignUpForm) => {
-    console.log({ data });
+  const handleSubmitPress = async (data: SignUpForm) => {
+    try {
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password,
+      );
+
+      await addDoc(collection(db, 'users'), {
+        id: userCredentials.user.uid,
+        email: userCredentials.user.email,
+        firstName: data.firstName,
+        lastName: data.lastName,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -49,11 +69,11 @@ export const SignUpPage = () => {
           <SignUpInputContainer>
             <p>Nome</p>
             <CustomInput
-              $hasError={!!errors?.name}
+              $hasError={!!errors?.firstName}
               placeholder="Digite seu nome"
-              {...register('name', { required: true })}
+              {...register('firstName', { required: true })}
             />
-            {errors?.name?.type === 'required' && (
+            {errors?.firstName?.type === 'required' && (
               <InputErrorMessage>O nome é obrigatório.</InputErrorMessage>
             )}
           </SignUpInputContainer>
