@@ -9,7 +9,7 @@ export const Colors = {
     white: '#f8f9fa',
   },
   input: {
-    background: '#e9ec3f',
+    background: '#e9ecef',
     placeholder: '#b6c757d',
   },
   error: '#ff6a6a',
