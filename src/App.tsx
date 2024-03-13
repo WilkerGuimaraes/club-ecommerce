@@ -11,6 +11,7 @@ import { SignUpPage } from './pages/sign-up/Sign-up.page';
 // Utilities
 import { auth, db } from './config/firebase.config';
 import { UserContext } from './contexts/user.context';
+import { userConverter } from './converters/firestore.converters';
 
 export const App = () => {
   const { isAuthenticated, loginUser, logoutUser } = useContext(UserContext);
@@ -25,12 +26,15 @@ export const App = () => {
     const isSigningIn = !isAuthenticated && user;
     if (isSigningIn) {
       const querySnapshot = await getDocs(
-        query(collection(db, 'users'), where('id', '==', user.uid)),
+        query(
+          collection(db, 'users').withConverter(userConverter),
+          where('id', '==', user.uid),
+        ),
       );
 
       const userFromFirestore = querySnapshot.docs[0]?.data();
 
-      return loginUser(userFromFirestore as any);
+      return loginUser(userFromFirestore);
     }
   });
   return (
