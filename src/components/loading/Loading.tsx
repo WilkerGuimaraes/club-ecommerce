@@ -2,7 +2,7 @@ import SyncLoader from 'react-spinners/SyncLoader';
 
 import { LoadingContainer } from './Loading.styles';
 
-export const LoadingComponent = () => {
+export const Loading = () => {
   return (
     <LoadingContainer>
       <SyncLoader size={30} />

@@ -9,7 +9,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from 'firebase/auth';
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Components
@@ -17,6 +17,7 @@ import { CustomButtom } from '../../components/custom-buttom/Custom-buttom';
 import { Header } from '../../components/header/Header';
 import { CustomInput } from '../../components/custom-input/Custom-input';
 import { InputErrorMessage } from '../../components/input-error-message/Input-error-message';
+import { Loading } from '../../components/loading/Loading';
 
 // Styles
 import {
@@ -44,6 +45,8 @@ export const LoginPage = () => {
     setError,
   } = useForm<LoginForm>();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const { isAuthenticated } = useContext(UserContext);
 
   const navigate = useNavigate();
@@ -56,6 +59,7 @@ export const LoginPage = () => {
 
   const handleSubmitPress = async (data: LoginForm) => {
     try {
+      setIsLoading(true);
       const userCredentials = await signInWithEmailAndPassword(
         auth,
         data.email,
@@ -69,11 +73,14 @@ export const LoginPage = () => {
       if (_error.code === AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
         return setError('password', { type: 'mismatch' });
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleSignInWithGooglePress = async () => {
     try {
+      setIsLoading(true);
       const userCredentials = await signInWithPopup(auth, googleProvider);
 
       const querySnapShot = await getDocs(
@@ -98,12 +105,16 @@ export const LoginPage = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <>
       <Header />
+
+      {isLoading && <Loading />}
 
       <LoginContainer>
         <LoginContent>
