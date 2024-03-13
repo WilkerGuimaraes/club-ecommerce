@@ -1,10 +1,13 @@
 import { useContext, useEffect } from 'react';
 
 // Styles
-import { Container } from './Categories-overview.style';
+import { Container } from './Categories-overview.styles';
 
 // Utilities
 import { CategoryContext } from '../../contexts/category.context';
+
+// Components
+import { CategoryOverview } from '../category-overview/Category-overview';
 
 export const CategoriesOverview = () => {
   const { categories, fetchCategories } = useContext(CategoryContext);
@@ -19,7 +22,7 @@ export const CategoriesOverview = () => {
   return (
     <Container>
       {categories.map((category) => (
-        <p key={category.id}>{category.displayName}</p>
+        <CategoryOverview key={category.id} category={category} />
       ))}
     </Container>
   );
