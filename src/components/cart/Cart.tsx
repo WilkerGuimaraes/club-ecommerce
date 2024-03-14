@@ -6,6 +6,7 @@ import { CartContext } from '../../contexts/cart.context';
 
 // Components
 import { CustomButtom } from '../custom-buttom/Custom-buttom';
+import { CartItem } from '../cart-item/Cart-item';
 
 // Styles
 import {
@@ -17,7 +18,7 @@ import {
 } from './Cart.styles';
 
 export const Cart = () => {
-  const { isVisible, toggleCart } = useContext(CartContext);
+  const { isVisible, products, toggleCart } = useContext(CartContext);
 
   return (
     <CartContainer isVisible={isVisible}>
@@ -25,7 +26,9 @@ export const Cart = () => {
       <CartContent>
         <CartTitle>Seu Carrinho</CartTitle>
 
-        {/* produtos */}
+        {products.map((product) => (
+          <CartItem key={product.id} product={product} />
+        ))}
 
         <CartTotal>Total R$999</CartTotal>
         <CustomButtom startIcon={<BsCartCheck />}>
