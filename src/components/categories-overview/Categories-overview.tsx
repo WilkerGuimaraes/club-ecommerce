@@ -8,9 +8,11 @@ import { CategoryContext } from '../../contexts/category.context';
 
 // Components
 import { CategoryOverview } from '../category-overview/Category-overview';
+import { Loading } from '../loading/Loading';
 
 export const CategoriesOverview = () => {
-  const { categories, fetchCategories } = useContext(CategoryContext);
+  const { categories, isLoading, fetchCategories } =
+    useContext(CategoryContext);
 
   useEffect(() => {
     if (categories.length === 0) {
@@ -18,6 +20,8 @@ export const CategoriesOverview = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (isLoading) return <Loading />;
 
   return (
     <Container>
