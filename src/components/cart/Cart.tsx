@@ -18,7 +18,8 @@ import {
 } from './Cart.styles';
 
 export const Cart = () => {
-  const { isVisible, products, toggleCart } = useContext(CartContext);
+  const { isVisible, products, productsTotalPrice, toggleCart } =
+    useContext(CartContext);
 
   return (
     <CartContainer isVisible={isVisible}>
@@ -30,7 +31,7 @@ export const Cart = () => {
           <CartItem key={product.id} product={product} />
         ))}
 
-        <CartTotal>Total R$999</CartTotal>
+        <CartTotal>Total R${productsTotalPrice}</CartTotal>
         <CustomButtom startIcon={<BsCartCheck />}>
           Ir para o Checkout
         </CustomButtom>
