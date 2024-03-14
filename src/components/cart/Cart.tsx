@@ -22,7 +22,7 @@ export const Cart = () => {
     useContext(CartContext);
 
   return (
-    <CartContainer isVisible={isVisible}>
+    <CartContainer $isVisible={isVisible}>
       <CartEscapeArea onClick={toggleCart} />
       <CartContent>
         <CartTitle>Seu Carrinho</CartTitle>

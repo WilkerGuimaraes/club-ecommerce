@@ -30,7 +30,7 @@ export const ProductItem: FunctionComponent<ProductItemProps> = ({
 
   return (
     <ProductContainer>
-      <ProductImage imageUrl={product.imageUrl}>
+      <ProductImage $imageUrl={product.imageUrl}>
         <CustomButtom startIcon={<BsCartPlus />} onClick={handleAddToCartClick}>
           Adicionar ao carrinho
         </CustomButtom>
