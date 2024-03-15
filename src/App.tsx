@@ -8,6 +8,7 @@ import { HomePage } from './pages/home/Home.page';
 import { LoginPage } from './pages/login/Login.page';
 import { SignUpPage } from './pages/sign-up/Sign-up.page';
 import { ExplorePage } from './pages/explore/explore.page';
+import { CheckoutPage } from './pages/checkout/Checkout.page';
 
 // Utilities
 import { auth, db } from './config/firebase.config';
@@ -62,6 +63,8 @@ export const App = () => {
         <Route path="/explore" element={<ExplorePage />} />
 
         <Route path="/category/:id" element={<CategoryDetailsPage />} />
+
+        <Route path="/checkout" element={<CheckoutPage />} />
 
         <Route path="/login" element={<LoginPage />} />
 
