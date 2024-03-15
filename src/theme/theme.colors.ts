@@ -13,4 +13,5 @@ export const Colors = {
     placeholder: '#b6c757d',
   },
   error: '#ff6a6a',
+  success: '#198754',
 };

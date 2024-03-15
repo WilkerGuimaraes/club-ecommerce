@@ -12,6 +12,7 @@ interface ICartContext {
   removeProductFromCart: (productId: string) => void;
   increaseProductQuantity: (productId: string) => void;
   decreaseProductQuantity: (productId: string) => void;
+  clearProducts: () => void;
 }
 
 export const CartContext = createContext<ICartContext>({
@@ -24,6 +25,7 @@ export const CartContext = createContext<ICartContext>({
   removeProductFromCart: () => {},
   increaseProductQuantity: () => {},
   decreaseProductQuantity: () => {},
+  clearProducts: () => {},
 });
 
 const PRODUCTS_STORAGE_KEY = '@fsw-store/products';
@@ -107,6 +109,10 @@ export const CartContextProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
+  const clearProducts = () => {
+    setProducts([]);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -119,6 +125,7 @@ export const CartContextProvider = ({ children }: { children: ReactNode }) => {
         removeProductFromCart,
         increaseProductQuantity,
         decreaseProductQuantity,
+        clearProducts,
       }}
     >
       {children}

@@ -20,6 +20,7 @@ import { Loading } from './components/loading/Loading';
 import { CategoryDetailsPage } from './pages/category-details/Category-details.page';
 import { Cart } from './components/cart/Cart';
 import { AuthenticationGuard } from './guards/Authentication.guards';
+import { PaymentConfirmationPage } from './pages/payment-confirmation/Payment-confirmation.page';
 
 export const App = () => {
   const [isInitializing, setIsInitializing] = useState(true);
@@ -60,11 +61,8 @@ export const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-
         <Route path="/explore" element={<ExplorePage />} />
-
         <Route path="/category/:id" element={<CategoryDetailsPage />} />
-
         <Route
           path="/checkout"
           element={
@@ -73,12 +71,13 @@ export const App = () => {
             </AuthenticationGuard>
           }
         />
-
+        <Route
+          path="/payment-confirmation"
+          element={<PaymentConfirmationPage />}
+        />
         <Route path="/login" element={<LoginPage />} />
-
         <Route path="/sign-up" element={<SignUpPage />} />
       </Routes>
-
       <Cart />
     </BrowserRouter>
   );
