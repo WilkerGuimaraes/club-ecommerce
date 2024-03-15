@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useMemo, useState } from 'react';
+import { ReactNode, createContext, useEffect, useMemo, useState } from 'react';
 import CartProduct from '../types/cart.types';
 import Product from '../types/products.types';
 
@@ -26,9 +26,24 @@ export const CartContext = createContext<ICartContext>({
   decreaseProductQuantity: () => {},
 });
 
+const PRODUCTS_STORAGE_KEY = '@fsw-store/products';
+
 export const CartContextProvider = ({ children }: { children: ReactNode }) => {
   const [isVisible, setVisible] = useState(false);
   const [products, setProducts] = useState<CartProduct[]>([]);
+
+  useEffect(() => {
+    const productsFromLocalStorage = localStorage.getItem(PRODUCTS_STORAGE_KEY);
+    if (productsFromLocalStorage) {
+      setProducts(JSON.parse(productsFromLocalStorage));
+    }
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(products));
+    }, 0);
+  }, [products]);
 
   const productsTotalPrice = useMemo(() => {
     return products.reduce((acc, currentProduct) => {
