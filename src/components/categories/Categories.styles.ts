@@ -4,7 +4,7 @@ export const CategoriesContainer = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  flex-direction: center;
+  justify-content: center;
 `;
 
 export const CategoriesContent = styled.div`
@@ -36,5 +36,30 @@ export const CategoriesContent = styled.div`
 
   & div:nth-child(5) {
     grid-area: e;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+
+    & div:nth-child(1) {
+      flex: 1;
+    }
+
+    & div:nth-child(2) {
+      flex: 1;
+    }
+
+    & div:nth-child(3) {
+      flex: 1;
+    }
+
+    & div:nth-child(4) {
+      flex: 1;
+    }
+
+    & div:nth-child(5) {
+      flex: 1;
+    }
   }
 `;
