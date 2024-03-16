@@ -37,26 +37,6 @@ export const CheckoutProducts = styled.div`
   margin-top: 15px;
   margin-bottom: 15px;
 
-  /* width */
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: ${Colors.input.background};
-  }
-
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: ${Colors.text.dark};
-  }
-
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: ${Colors.text.dark};
-  }
-
   @media (max-width: 768px) {
     min-width: 100%;
   }

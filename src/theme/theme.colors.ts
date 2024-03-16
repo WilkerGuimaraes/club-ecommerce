@@ -1,5 +1,6 @@
 export const Colors = {
   primary: '#212529',
+  overflowHover: '#4b4b4b',
   text: {
     white: '#f8f9fa',
     dark: '#343a40',
